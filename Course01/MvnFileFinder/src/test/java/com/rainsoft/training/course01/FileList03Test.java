@@ -1,4 +1,4 @@
-package com.rainsoft.course01;
+package com.rainsoft.training.course01;
 
 import java.io.File;
 import java.util.Collection;
