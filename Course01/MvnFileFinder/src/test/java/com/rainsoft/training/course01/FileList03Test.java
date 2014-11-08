@@ -13,19 +13,16 @@ public class FileList03Test {
 
 	@Before
 	public void setup() {
-		testPath = ClassLoader.getSystemResource("testfolder").getPath();
-		System.out.println(testPath);
+		testPath = "testfolder";
 	}
 
 	@Test
 	public void testGetFiles() {
 		final FileList03 f03 = new FileList03();
-
-		final Collection<File> files = f03.getFiles("testPath");
+		final Collection<File> files = f03.getFiles(testPath);
+		final boolean result = files.contains(new File("testFolder/testme.md"));
+		Assert.assertEquals(true, result);
 		Assert.assertEquals(2, files.size());
-		final File f = new File("testFolder/testme.md");
-		Assert.assertEquals(f.getAbsolutePath(), ((File) files.toArray()[0]).getAbsolutePath());
-		System.out.println(((File) files.toArray()[0]).getAbsolutePath());
 	}
 
 }

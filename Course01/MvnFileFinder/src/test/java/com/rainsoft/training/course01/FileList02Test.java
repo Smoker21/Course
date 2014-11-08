@@ -18,9 +18,9 @@ public class FileList02Test {
 	public void testGetFiles() {
 		final FileList02 f02 = new FileList02();
 		final List<String> list = f02.getFiles("testFolder/");
-		Assert.assertEquals(1, list.size());
+		Assert.assertEquals(2, list.size());
 		final File f = new File("testFolder/testme.md");
-		Assert.assertEquals(f.getAbsolutePath(), list.get(0));
+		Assert.assertEquals(f.getAbsolutePath(), list.get(1));
 	}
 
 }
