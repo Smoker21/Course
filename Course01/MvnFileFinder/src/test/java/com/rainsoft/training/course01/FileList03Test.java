@@ -13,7 +13,9 @@ public class FileList03Test {
 
 	@Before
 	public void setup() {
-		testPath = ClassLoader.getSystemResource("testfolder").getPath();
+		this.getClass().getClassLoader().getResource("testme.md").getPath();
+		testPath = ClassLoader.getSystemResource("testme.md").getPath();
+		System.out.println(testPath);
 	}
 
 	@Test
