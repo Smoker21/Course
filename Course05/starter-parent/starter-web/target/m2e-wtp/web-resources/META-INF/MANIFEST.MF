@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: starter-web
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Lance
+Implementation-Vendor-Id: com.rainty.sample
+Build-Jdk: 1.8.0_25
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

@@ -1,6 +1,7 @@
 package com.rainsoft.training.webAppDemo;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -31,6 +32,10 @@ public class EverythingIsServlet extends HttpServlet {
 	@Override
 	protected void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		final PrintWriter out = response.getWriter();
+		out.print("<html><body><h1>hello</h1></body></html>");
+		out.flush();
 	}
 
 	/**
