@@ -8,9 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.rainty.sample</groupId>
 	<artifactId>starter-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>starter-web</name>
@@ -116,5 +114,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
 </project>
