@@ -16,7 +16,7 @@ import org.springframework.transaction.PlatformTransactionManager;
  * A sample Dbconfiguration for H2 embedded database. It's for demo and test
  * purpose. Not for production. For Production purpose, please use
  * OracleDbconfig
- * 
+ *
  * @author Lance
  *
  */
