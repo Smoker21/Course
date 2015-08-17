@@ -1,6 +1,12 @@
 package com.rainty.sample.course06;
 
+import org.springframework.data.annotation.Id;
+
 public class Person {
+
+	@Id
+	private String id;
+
 	private String firstName;
 	private String lastName;
 
@@ -26,6 +32,11 @@ public class Person {
 
 	public void setLastName(final String lastName) {
 		this.lastName = lastName;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Person [id=%s, firstName=%s, lastName=%s]", id, firstName, lastName);
 	}
 
 }

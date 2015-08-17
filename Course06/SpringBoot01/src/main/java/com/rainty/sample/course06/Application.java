@@ -1,42 +1,45 @@
 package com.rainty.sample.course06;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.net.UnknownHostException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.mongodb.MongoClient;
 
 @Configuration
 @EnableAutoConfiguration
 @RestController
+@ComponentScan
 public class Application {
 
-	private Set<Person> users;
+	private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
 	public static void main(final String... args) {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@RequestMapping("/hello/{name}")
-	String sayHi(@PathVariable final String name) {
-		return "Say Hi to \"" + name + "\"";
-	}
-
-	@RequestMapping(value = "/api/user/", method = RequestMethod.POST)
-	ResponseEntity<Set<Person>> addUser(@RequestBody final Person person) {
-		if (users == null) {
-			this.users = new HashSet<Person>();
+	/**
+	 * Configuration for Mongo Db access
+	 * 
+	 * @return
+	 */
+	@Bean
+	public MongoClient mongo() {
+		MongoClient client = null;
+		try {
+			client = new MongoClient("192.168.99.102", 27017);
+		} catch (final UnknownHostException e) {
+			logger.error("error in connect to mongodb", e);
+			throw new RuntimeException("error in connect to mongodb", e);
 		}
-		users.add(person);
-		return new ResponseEntity<Set<Person>>(users, HttpStatus.OK);
+		return client;
 	}
 
 }
