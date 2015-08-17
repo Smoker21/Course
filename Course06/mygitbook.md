@@ -25,9 +25,11 @@ Edit the tomcat-users.xml file
 Q: Save and load docker images
 
 export:
+
 	$docker save mynewimage > /tmp/mynewimage.tar
 
 import
+
 	$docker load < /tmp/mynewimage.tar
 
 Q: Export and import docker container
@@ -45,8 +47,10 @@ Q: Copy files outside container
 	$ docker cp fe6f9cbdbce9:/usr/share/nginx/html /vmbox/volume/nginx/www
 
 Q: Boot2Docker not allow remote api 
+Tried, but not work in boot2docker
 
 	Edit /var/lib/boot2docker/profile. Set the following
 	DOCKER_TLS=no
-	
-	$
+
+Q: Spring boot external property source sample
+see this : [http://www.mkyong.com/spring/spring-propertysources-example/]	
