@@ -22,10 +22,9 @@ public class PersonRepositoryTest {
 
 	@Test
 	public void testSaveS() {
-		repository.save(new Person("Test", "Test"));
-		final Person p = service.save(new Person("Test", "Test"));
+		repository.save(new Person("Test", "Test", "Who@am.i"));
+		final Person p = service.save(new Person("Test", "Test", "Who@am.i"));
 		System.out.println(repository.count());
 		System.out.println(p);
 	}
-
 }

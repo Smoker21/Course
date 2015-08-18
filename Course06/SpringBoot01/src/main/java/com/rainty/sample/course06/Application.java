@@ -27,14 +27,14 @@ public class Application {
 
 	/**
 	 * Configuration for Mongo Db access
-	 * 
+	 *
 	 * @return
 	 */
 	@Bean
 	public MongoClient mongo() {
 		MongoClient client = null;
 		try {
-			client = new MongoClient("192.168.99.102", 27017);
+			client = new MongoClient("192.168.99.100", 27017);
 		} catch (final UnknownHostException e) {
 			logger.error("error in connect to mongodb", e);
 			throw new RuntimeException("error in connect to mongodb", e);

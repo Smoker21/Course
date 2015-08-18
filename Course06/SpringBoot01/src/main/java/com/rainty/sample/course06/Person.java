@@ -9,6 +9,7 @@ public class Person {
 
 	private String firstName;
 	private String lastName;
+	private String emailAddress;
 
 	public Person() {
 	}
@@ -16,6 +17,24 @@ public class Person {
 	public Person(final String firstName, final String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+	}
+
+	public Person(final String firstName, final String lastName, final String email) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailAddress = email;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(final String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 	public String getFirstName() {
@@ -36,7 +55,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return String.format("Person [id=%s, firstName=%s, lastName=%s]", id, firstName, lastName);
+		return String.format("Person [id=%s, firstName=%s, lastName=%s, emailAddress=%s]", id, firstName, lastName, emailAddress);
 	}
 
 }
