@@ -64,5 +64,6 @@
 		<module>starter-util</module>
 		<module>starter-core</module>
 		<module>starter-web</module>
+		<module>Simple-workflow</module>
 	</modules>
 </project>
