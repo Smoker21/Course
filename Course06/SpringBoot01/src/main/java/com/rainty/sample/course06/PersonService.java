@@ -3,7 +3,6 @@ package com.rainty.sample.course06;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -19,12 +18,6 @@ import com.rainty.sample.course06.repository.PersonRepository;
 @RestController
 public class PersonService {
 
-	@Value("${local.server.port}")
-	int port;
-
-	@Value("${local.server.host}")
-	String host;
-
 	@Autowired
 	PersonRepository repository;
 
@@ -38,7 +31,7 @@ public class PersonService {
 		repository.save(new Person("Sakura", "Chen"));
 		repository.save(new Person("Jane", "Chen"));
 		repository.save(new Person("Hunter", "Chen"));
-		return "Say Hi to \"" + name + "\" at" + host + ":" + port;
+		return "Say Hi to \"" + name + "\"";
 	}
 
 	@RequestMapping(value = "/api/user/", method = RequestMethod.POST)
