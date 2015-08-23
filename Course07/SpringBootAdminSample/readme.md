@@ -1,7 +1,7 @@
 SpringBoot Admin Sample 
 =======================
 
-Reference to (https://github.com/codecentric/spring-boot-admin "Spring boot admin"). Thanks very much for providing such great tools
+Reference to [Spring boot admin] (https://github.com/codecentric/spring-boot-admin). Thanks very much for providing such great tools
 
 To run the application 
 		
