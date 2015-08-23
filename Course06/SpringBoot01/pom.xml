@@ -5,6 +5,12 @@
 	<artifactId>SpringBoot_Sample01</artifactId>
 	<version>1.0</version>
 	<name>Spring Boot Sample 01</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.source.version>1.7</java.source.version>
+		<java.target.version>1.7</java.target.version>
+	</properties>	
 	<!-- our one dependency on Spring Boot's web support. No version. -->
 	<dependencies>
 		<dependency>
@@ -38,18 +44,6 @@
     		<artifactId>spring-boot-admin-starter-client</artifactId>
     		<version>1.2.3</version>
 		</dependency>
-		<!-- 
-		<dependency>
-		    <groupId>de.codecentric</groupId>
-		    <artifactId>spring-boot-admin-server</artifactId>
-		    <version>1.2.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>de.codecentric</groupId>
-		    <artifactId>spring-boot-admin-server-ui</artifactId>
-		    <version>1.2.2</version>
-		</dependency>
-		 -->		
 	</dependencies>
 	<build>
 		<plugins>
@@ -84,6 +78,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.2.5.RELEASE</version>
                 <executions>
                     <execution>
                         <goals>
@@ -95,6 +90,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
