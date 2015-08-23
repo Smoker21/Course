@@ -18,7 +18,7 @@ public class MongoConfig {
 	@Value("${spring.data.mongodb.host}")
 	private String host;
 
-	@Value("${spring.data.mongodb.host}")
+	@Value("${spring.data.mongodb.port}")
 	private Integer port;
 
 	/**
@@ -30,6 +30,7 @@ public class MongoConfig {
 	public MongoClient mongo() {
 		MongoClient client = null;
 		try {
+			logger.info("Start Mongo Db at {}:{}", host, port);
 			client = new MongoClient(host, port);
 		} catch (final UnknownHostException e) {
 			logger.error("error in connect to mongodb", e);
