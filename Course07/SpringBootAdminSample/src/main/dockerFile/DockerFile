@@ -1,0 +1,9 @@
+FROM java:7
+MAINTAINER "Lance Chen"
+LABEL Description="For SpringBoot Admin UI" Version="1.0" "ContextPath="/SpringAdmin"
+VOLUME /tmp
+RUN mkdir /userapp
+ADD SpringbootAdminUI.jar /userapp/
+WORKDIR /userapp
+EXPOSE 11900
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom ","-jar","SpringbootAdminUI.jar"]

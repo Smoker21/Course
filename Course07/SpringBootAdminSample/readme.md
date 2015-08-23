@@ -5,5 +5,5 @@ Reference to [Spring boot admin] (https://github.com/codecentric/spring-boot-adm
 
 To run the application 
 		
-		java -jar SpringBootAdminSample_1.0.jar --server.port=9090 --server.contextPath=adminUI 
+		java -jar SpringBootAdminSample_1.0.jar --server.port=9090 --server.contextPath=/adminUI 
 
