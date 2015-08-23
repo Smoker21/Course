@@ -2,9 +2,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.rainty.sample</groupId>
-	<artifactId>Course07</artifactId>
+	<artifactId>SpringbootAdminUI</artifactId>
 	<version>1.0</version>
 	<name>SpringbootAdminSample</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>de.codecentric</groupId>
@@ -18,7 +22,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -35,10 +38,19 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>de.codecentric.boot.admin.SpringBootAdminApplication</mainClass>
-                    <addResources>false</addResources>
+					<mainClass>com.rainty.sample.course7.SpringBootAdminApplication</mainClass>
+					<addResources>false</addResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>	
+	</build>
+	<description>Spring boot Admin UI sample application. </description>
 </project>
