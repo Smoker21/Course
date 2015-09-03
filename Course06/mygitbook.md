@@ -46,11 +46,25 @@ Q: Copy files outside container
 	$ docker cp fe6f9cbdbce9:/etc/nginx /vmbox/volume/nginx/conf
 	$ docker cp fe6f9cbdbce9:/usr/share/nginx/html /vmbox/volume/nginx/www
 
-Q: Boot2Docker not allow remote api 
+Q: Boot2Docker not allow remote api
+ 
 Tried, but not work in boot2docker
 
 	Edit /var/lib/boot2docker/profile. Set the following
 	DOCKER_TLS=no
 
 Q: Spring boot external property source sample
+
 see this : [http://www.mkyong.com/spring/spring-propertysources-example/]	
+
+Q: Build Registry used TLS Certificate and key
+see this : [http://www.rackspace.com/knowledge_center/article/generate-a-csr-with-openssl]
+
+	# add a directory 
+	$ mkdir certificate
+	$ cd certificate 
+	# generate RSA key remember the file name. 
+	$ genrsa -out myRegistry.key 2048 
+	$ openssl req -new -x509 -key myRegistry.key -out myRegistry.csr -subj /CN=rainty.com
+   
+   
