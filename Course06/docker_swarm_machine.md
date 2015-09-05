@@ -9,6 +9,7 @@
 
 1. 建立 swarm token , 找一台有 docker 的機器做這件事情.. ，中間的東西不要管他，注意最後輸出的字串，那個就是 token : 9f69d81d12bc5d554496da8a967e50a3, --rm 的意思是跑完就把 container 幹掉 
 
+	'''
     $ docker run --rm swarm create
     Unable to find image 'swarm:latest' locally
     latest: Pulling from library/swarm
@@ -24,8 +25,10 @@
     Digest: sha256:fbca254e741911b4e2028072c828845fbd3200e72392a2d5aab8cf8d427af816
     Status: Downloaded newer image for swarm:latest
     9f69d81d12bc5d554496da8a967e50a3
-
+	'''
+    
 1. 建立 Docker machine
+
 
     $ docker-machine create -d virtualbox \
       --virtualbox-memory 2048 \
@@ -33,7 +36,8 @@
       --swarm-master \
       --swarm-discovery token://9f69d81d12bc5d554496da8a967e50a3
       swarm00 
-    
+
+
 2.  檢查 Virtual box 狀態, 可以開 virtual box 檢查，會看到 swarm00 ，也可以使用 docker-machine ls , 底下可以看到 IP ，注意 SWARM  狀態
 
     $ docker-machine ls
