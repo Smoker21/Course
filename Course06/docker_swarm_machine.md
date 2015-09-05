@@ -69,10 +69,10 @@
     
 5. 要試試 cluster ，當然還要下一台 swarm02 ，可是不用再打一次了吧.. 
 
-6. 這行很重要.. 不下就做不動了
+6. 這行很重要.. 不下就做不動了, 這是設定環境變數用的，做完用 docker info 應該會看到底下資訊，起了四個 container ，三個 images. 總共三台 VM 在 cluster 裡面
     
     ```
-    $ eval $(docker-machine env --swarm swarm00)     
+    $ eval $(docker-machine env --swarm swarm00)
     $ docker info
     Containers: 4
     Images: 3
@@ -100,13 +100,17 @@
     Name: f89ef362cad8
     ```
 
-6. 回到 swarm00 , 可以檢查一下 docker swarm 的 container，注意 command and args. 
+6. 研究一下剛剛的環境變數到底是哪些鬼, 注意，這裡下的對象是 master 的 swarm00 
     
-    $docker inspect swarm-agent-master 
-    
-7. 建立一個 swarm cluster，注意命令行之後的 token 
-    
-    docker@swarm00:~$ docker run --rm swarm create
-    cf4a6baffa3f160273432042883261e2
+    ```
+    $docker-machine env swarm00 
+    export DOCKER_TLS_VERIFY="1"
+    export DOCKER_HOST="tcp://192.168.99.104:2376"
+    export DOCKER_CERT_PATH="C:\{your_path}\.docker\machine\machines\swarm00"
+    export DOCKER_MACHINE_NAME="swarm00"
+    # Run this command to configure your shell:
+    # eval "$(c:\Program Files\Docker Toolbox\docker-machine.exe env swarm00)"
+    ```
+    我個人不喜歡 windows docker tool 的 terminal ，把這個東西改一改，丟到任一台新建的 docker machine 上面，就可以從那台機器對整個 cluster 下 docker 指令了
     
 8. 
