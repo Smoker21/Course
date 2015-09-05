@@ -29,43 +29,49 @@
     
 1. 建立 Docker machine
 
-
+    ```
     $ docker-machine create -d virtualbox \
       --virtualbox-memory 2048 \
       --swarm \
       --swarm-master \
       --swarm-discovery token://9f69d81d12bc5d554496da8a967e50a3
       swarm00 
-
+    ```
 
 2.  檢查 Virtual box 狀態, 可以開 virtual box 檢查，會看到 swarm00 ，也可以使用 docker-machine ls , 底下可以看到 IP ，注意 SWARM  狀態
-
+    
+    ```
     $ docker-machine ls
     NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
     default   *        virtualbox   Running   tcp://192.168.99.100:2376
     swarm00            virtualbox   Running   tcp://192.168.99.104:2376   swarm00 (master)
+    ```
     
 3. 使用連線軟體進入 virtual box 192.168.99.104 , docker ps 看狀況
 
+    ```
     docker@swarm00:~$ docker ps
     CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                              NAMES
     80ad3bddc980        swarm:latest        "/swarm join --advert"   3 minutes ago       Up 3 minutes        2375/tcp                           swarm-agent
     f89ef362cad8        swarm:latest        "/swarm manage --tlsv"   3 minutes ago       Up 3 minutes        0.0.0.0:3376->3376/tcp, 2375/tcp   swarm-agent-master
-    
+    ```
 
 4. 建立下一台 docker-machine ，當成 swarm slave ，做完同時做 docker-machine ls ，然後連進去看看狀態
-
+    
+    ```
     $ docker-machine create -d virtualbox --virtualbox-memory 2048 --swarm --swarm-discovery token://9f69d81d12bc5d554496da8a967e50a3 swarm01
     Creating VirtualBox VM...
     Creating SSH key...
     Starting VirtualBox VM...
     Starting VM...
     To see how to connect Docker to this machine, run: c:\Program Files\Docker Toolbox\docker-machine.exe env swarm01
+    ```
     
 5. 要試試 cluster ，當然還要下一台 swarm02 ，可是不用再打一次了吧.. 
 
 6. 這行很重要.. 不下就做不動了
-
+    
+    ```
     $ eval $(docker-machine env --swarm swarm00)     
     $ docker info
     Containers: 4
@@ -92,6 +98,7 @@
     CPUs: 3
     Total Memory: 4.097 GiB
     Name: f89ef362cad8
+    ```
 
 6. 回到 swarm00 , 可以檢查一下 docker swarm 的 container，注意 command and args. 
     
