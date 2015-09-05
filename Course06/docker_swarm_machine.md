@@ -9,7 +9,7 @@
 
 1. 建立 swarm token , 找一台有 docker 的機器做這件事情.. ，中間的東西不要管他，注意最後輸出的字串，那個就是 token : 9f69d81d12bc5d554496da8a967e50a3, --rm 的意思是跑完就把 container 幹掉 
 
-	'''
+	```
     $ docker run --rm swarm create
     Unable to find image 'swarm:latest' locally
     latest: Pulling from library/swarm
@@ -25,7 +25,7 @@
     Digest: sha256:fbca254e741911b4e2028072c828845fbd3200e72392a2d5aab8cf8d427af816
     Status: Downloaded newer image for swarm:latest
     9f69d81d12bc5d554496da8a967e50a3
-	'''
+	```
     
 1. 建立 Docker machine
 
