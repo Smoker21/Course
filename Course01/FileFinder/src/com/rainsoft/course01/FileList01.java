@@ -8,11 +8,11 @@ public class FileList01 {
 		final File folder = new File("C:/");
 		final File[] listOfFiles = folder.listFiles();
 
-		for (int i = 0; i < listOfFiles.length; i++) {
-			if (listOfFiles[i].isFile()) {
-				System.out.println("File " + listOfFiles[i].getName());
-			} else if (listOfFiles[i].isDirectory()) {
-				System.out.println("Directory " + listOfFiles[i].getName());
+		for (File listOfFile : listOfFiles) {
+			if (listOfFile.isFile()) {
+				System.out.println("File " + listOfFile.getName());
+			} else if (listOfFile.isDirectory()) {
+				System.out.println("Directory " + listOfFile.getName());
 			}
 		}
 	}

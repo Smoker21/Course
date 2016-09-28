@@ -1,7 +1,7 @@
 使用 docker toolkit 測試 docker-swarm 
 ====================================
 
-單純個人筆記的指令紀錄，如果要看指令的詳細介紹，請查文件<https://docs.docker.com/machine/reference/create/>，最有用的文件就是命令列 help 
+http://www.projectcalico.org/getting-started/docker/
 
     docker-machine --help 
 

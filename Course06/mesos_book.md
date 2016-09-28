@@ -49,5 +49,23 @@ Edit /etc/zookeeper/conf/zoo.cfg, update the ip to your own.
 	server.1=172.17.85.100:2888:3888
 	server.2=172.17.85.101:2888:3888
 	
+Start server
+  
+	sudo zookeeper-server restart
 	
+update /etc/mesos/zk file 
+
+	zk://172.17.85.100:2181,172.17.85.101/mesos
+	
+update quorum /etc/mesos-master/quorum 
+   
+    2 
+	
+execute mesos & marathon 
+
+	/usr/bin/mesos-init-wrapper master&
+	/usr/bin/marathon&
+	
+
+
 	

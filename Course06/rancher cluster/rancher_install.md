@@ -19,12 +19,33 @@ default user: docker , default password:
 rancherOS 和 boot2docker.iso 不一樣，使用 docker/tcuser 無法登入，一定要那把 id_rsa 的 key <br/>
 當然，使用　docker-machine ssh rancher00 還是可以動
 
-4. 啟動　rancher server
+4. 啟動　rancher server (這邊使用 rancher00) 
 ```shell
 docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
+docker ps 
 ```
 
-5. 
+5. 註冊 Host 到 Rancher server <br/>
+連線到 rancher server http://192.168.99.108:8080 , 功能表 Infra > Host > Custom > 輸入資訊後，會得到類似這樣的 script 
+![rancher register](resources/rancher_register.png)
+```shell
+sudo docker run -e CATTLE_AGENT_IP="192.168.99.107"  -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.0.2 http://192.168.99.108:8080/v1/scripts/7654A920B48B347480AC:1475042400000:wfLJIINYLT69ndxPhv8ZKgLy7ao
+```
+ssh 進入 rancher01 執行這個命令，會將 Racher01  註冊進去 Racher server
+![](resources/rancher_host_docker_agent.png)
+最終出來到 Infra > Host 可以看到這個畫面 
+![](resources/rancher_host.png)
+照以上動作，把幾台 VM 通通加進去做 Host，得到以下畫面
+![](resources/rancher_cluster.png)
+
+6. 接下來可以佈署一些簡單的 docker image 進去, 譬如 Weave Scope ，我很推薦的一套 docker base 監控程式<br/>
+選擇 Catalog 
+![](resources/rancher_catalog.png)
+向下選到 Weave Scope > View Detail > Preview 看一下 Docker Compose 
+![](resources/weave_docker_compose_yml.png)
+
+
+
 
 
 
