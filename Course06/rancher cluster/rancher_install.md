@@ -3,9 +3,11 @@
 
 ### Single Node Cluster mode ###
 
-1. docker-toolbox install (ignore)
+#### docker-toolbox install (ignore) ####
 
-2. docker-machine start machine 裝一台 master rancher00, 三台 client
+這個應該不用講了
+
+#### docker-machine start machine 裝一台 master rancher00, 三台 client ####
 ```shell
 docker-machine create -d virtualbox --virtualbox-memory 2048 --virtualbox-boot2docker-url https://releases.rancher.co m/os/latest/rancheros.iso rancher00
 docker-machine create -d virtualbox --virtualbox-memory 2048 --virtualbox-boot2docker-url https://releases.rancher.co m/os/latest/rancheros.iso rancher01
@@ -14,20 +16,22 @@ docker-machine create -d virtualbox --virtualbox-memory 2048 --virtualbox-boot2d
 docker-machine ls
 ```
 
-3. 使用 ssh terminal 連線進去 rancher os <br/>
+#### 使用 ssh terminal 連線進去 rancher os ####
+
 key 存放的位置在 C:\Users\{username}\.docker\machine\machines\rancher00\id_rsa </br>
 default user: docker , default password: 
 整個設定的資料放在 config.json <br/>
 rancherOS 和 boot2docker.iso 不一樣，使用 docker/tcuser 無法登入，一定要那把 id_rsa 的 key <br/>
 當然，使用　docker-machine ssh rancher00 還是可以動
 
-4. 啟動　rancher server (這邊使用 rancher00) 
+#### 啟動　rancher server (這邊使用 rancher00) ####
 ```shell
 docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
 docker ps 
 ```
 
-5. 註冊 Host 到 Rancher server <br/>
+#### 註冊 Host 到 Rancher server ####
+
 連線到 rancher server http://192.168.99.108:8080 , 功能表 Infra > Host > Custom > 輸入資訊後，會得到類似這樣的 script 
 ![rancher register](resources/rancher_register.png)
 ```shell
@@ -40,7 +44,7 @@ ssh 進入 rancher01 執行這個命令，會將 Racher01  註冊進去 Racher s
 照以上動作，把幾台 VM 通通加進去做 Host，得到以下畫面<br/>
 ![](resources/rancher_cluster.png)
 
-6. 接下來可以佈署一些簡單的 docker image 進去, 譬如 Weave Scope ，我很推薦的一套 docker base 監控程式<br/>
+#### 接下來可以佈署一些簡單的 docker image 進去, 譬如 Weave Scope ，我很推薦的一套 docker base 監控程式 ####
 選擇 Catalog <br/>
 ![](resources/rancher_catalog.png)<br/>
 向下選到 Weave Scope > View Detail > Preview 看一下 Docker Compose, 可以學習一下 Docker compose 語法 <br/>
