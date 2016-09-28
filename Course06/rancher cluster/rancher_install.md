@@ -32,17 +32,17 @@ docker ps
 sudo docker run -e CATTLE_AGENT_IP="192.168.99.107"  -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.0.2 http://192.168.99.108:8080/v1/scripts/7654A920B48B347480AC:1475042400000:wfLJIINYLT69ndxPhv8ZKgLy7ao
 ```
 ssh 進入 rancher01 執行這個命令，會將 Racher01  註冊進去 Racher server
-![](resources/rancher_host_docker_agent.png)
-最終出來到 Infra > Host 可以看到這個畫面 
-![](resources/rancher_host.png)
-照以上動作，把幾台 VM 通通加進去做 Host，得到以下畫面
-![](resources/rancher_cluster.png)
+![](resources/rancher_host_docker_agent.png)<br/>
+最終出來到 Infra > Host 可以看到這個畫面 <br/>
+![](resources/rancher_host.png) <br/>
+照以上動作，把幾台 VM 通通加進去做 Host，得到以下畫面<br/>
+![](resources/rancher_cluster.png)<br/>
 
 6. 接下來可以佈署一些簡單的 docker image 進去, 譬如 Weave Scope ，我很推薦的一套 docker base 監控程式<br/>
-選擇 Catalog 
-![](resources/rancher_catalog.png)
-向下選到 Weave Scope > View Detail > Preview 看一下 Docker Compose 
-![](resources/weave_docker_compose_yml.png)
+選擇 Catalog <br/>
+![](resources/rancher_catalog.png)<br/>
+向下選到 Weave Scope > View Detail > Preview 看一下 Docker Compose <br/>
+![](resources/weave_docker_compose_yml.png)<br/>
 
 
 
