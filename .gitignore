@@ -60,3 +60,8 @@ $RECYCLE.BIN/
 /Course01/FileFinder/.classpath
 /Course01/FileFinder/.project
 /Course01/FileFinder/.settings/org.eclipse.jdt.core.prefs
+redis_demo/.mvn/wrapper/maven-wrapper.jar
+redis_demo/.mvn/wrapper/maven-wrapper.properties
+Course01/FileFinder/.settings/
+*.project
+/.settings

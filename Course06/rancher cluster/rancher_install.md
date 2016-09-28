@@ -62,13 +62,14 @@ ssh 進入 rancher01 執行這個命令，會將 Racher01  註冊進去 Racher s
 可以連結進去任何一台 rancher host ，手動跑一個 docker 起來，譬如這樣 
 
 ```shell 
-[rancher@rancher03 ~]$ docker run -l io.rancer.container.network=true --name my-redis -d redis
+[rancher@rancher03 ~]$ docker run -l io.rancer.container.network=true --name my-redis -d -p 6379:6379 redis
 ```
-跑完之後，在 Racher 的 container 列表裡面就會看到 Redis server ，而且相當好用的是 ip 也建立起來了，如下圖
+跑完之後，在 Racher 的 container 列表裡面就會看到 Redis server ，而且相當好用的是 ip 也建立起來了，如下圖，以這種方式建立起來的是 Standalone container 
 ![](resources/rancher_standalone_container_1.png)
 
 #### 支援 Rancher host 間網路通信  ####
 
+在任何一台的 Rancher controlled host 底下, ping 看看剛剛那個 Redis server 的 IP ，可以看到這台 Redis 的 IP ，對所有 serer 都可見。
 
 
 
