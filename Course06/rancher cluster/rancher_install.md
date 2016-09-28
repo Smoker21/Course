@@ -4,6 +4,7 @@
 ### Single Node Cluster mode ###
 
 1. docker-toolbox install (ignore)
+
 2. docker-machine start machine 裝一台 master rancher00, 三台 client
 ```shell
 docker-machine create -d virtualbox --virtualbox-memory 2048 --virtualbox-boot2docker-url https://releases.rancher.co m/os/latest/rancheros.iso rancher00
@@ -12,6 +13,7 @@ docker-machine create -d virtualbox --virtualbox-memory 2048 --virtualbox-boot2d
 docker-machine create -d virtualbox --virtualbox-memory 2048 --virtualbox-boot2docker-url https://releases.rancher.co m/os/latest/rancheros.iso rancher03
 docker-machine ls
 ```
+
 3. 使用 ssh terminal 連線進去 rancher os <br/>
 key 存放的位置在 C:\Users\{username}\.docker\machine\machines\rancher00\id_rsa </br>
 default user: docker , default password: 
