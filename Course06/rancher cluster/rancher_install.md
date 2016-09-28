@@ -45,6 +45,7 @@ ssh 進入 rancher01 執行這個命令，會將 Racher01  註冊進去 Racher s
 ![](resources/rancher_cluster.png)
 
 #### 接下來可以佈署一些簡單的 docker image 進去, 譬如 Weave Scope ，我很推薦的一套 docker base 監控程式 ####
+
 選擇 Catalog <br/>
 ![](resources/rancher_catalog.png)<br/>
 向下選到 Weave Scope > View Detail > Preview 看一下 Docker Compose, 可以學習一下 Docker compose 語法 <br/>
@@ -53,6 +54,24 @@ ssh 進入 rancher01 執行這個命令，會將 Racher01  註冊進去 Racher s
 ![](resources/stack_enable.png)<br/>
 可以點選 Host 看看實際上部署到哪些 Server 上 <br/>
 ![](resources/host_stack_enable.png)<br/>
+
+### Rancher 支援命令列模式自動偵測 #### 
+
+相信在 Host 底下有個 add container 的按鈕，說真的，這個地方的畫面非常的 Over design ，而且使用 UI 根本無法做自動化，還是用命令列搭配 Ansible 這類工具比較好用. 
+
+可以連結進去任何一台 rancher host ，手動跑一個 docker 起來，譬如這樣 
+
+```shell 
+[rancher@rancher03 ~]$ docker run -l io.rancer.container.network=true --name my-redis -d redis
+```
+跑完之後，在 Racher 的 container 列表裡面就會看到 Redis server ，而且相當好用的是 ip 也建立起來了，如下圖
+![](resources/rancher_standalone_container_1.png)
+
+#### 支援 Rancher host 間網路通信  ####
+
+
+
+
 
 
 
