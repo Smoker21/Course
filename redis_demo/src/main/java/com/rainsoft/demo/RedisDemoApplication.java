@@ -27,7 +27,7 @@ public class RedisDemoApplication {
 	@Autowired
 	private Environment env; 
 	
-	@RequestMapping(path="/api/externalProp",method= RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
+	@RequestMapping(path="/api/externalProp",method= RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String getProperties() {
 		return env.getProperty("my.value");
