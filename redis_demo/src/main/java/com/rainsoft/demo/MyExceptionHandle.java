@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -31,6 +32,22 @@ public class MyExceptionHandle {
 		result.put("errorMessage", sb.toString());		
 		return result;
 	}
+	
+	@ExceptionHandler
+	@ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+	@ResponseBody	
+	Map<String,String> HandleRedisException(RedisConnectionFailureException ex) {
+		Map<String,String> result = new HashMap<>();
+		StringBuilder sb = new StringBuilder();
+		sb.append(ex.getMessage() + System.lineSeparator());
+		sb.append(ex.getMostSpecificCause().getMessage());
+		sb.append("Please contact the system admin");
+		result.put("success", Boolean.FALSE.toString());		
+		result.put("errorMessage", sb.toString());		
+		return result;		
+	}
+	
+	
 	
 	
 	@ExceptionHandler
