@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: MyEurekaService
+server:
+  port: 8081 
+
+
+app:
+  name: MyApp
+  description: My Test application for Eureka service registry
+  
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
