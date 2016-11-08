@@ -65,3 +65,7 @@ redis_demo/.mvn/wrapper/maven-wrapper.properties
 Course01/FileFinder/.settings/
 *.project
 /.settings
+MyEurekaServer/.mvn/
+MyFirstApp/.mvn/
+Course05/starter-parent/Simple-workflow/.settings/
+Course05/starter-parent/starter-core/.settings/
