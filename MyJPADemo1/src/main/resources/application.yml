@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: MyJpaRestSample
+  data:
+    rest:
+      base-path: api
+    jpa:
+      repositories:
+        enabled: true
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+server:
+  port: 9001 
+  
+  
+logging:
+  level:
+    org: 
+      hibernate:
+        SQL: debug
+
+app:
+  name: MyApp
+  description: My Test application for Jpa Repository
+  
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
