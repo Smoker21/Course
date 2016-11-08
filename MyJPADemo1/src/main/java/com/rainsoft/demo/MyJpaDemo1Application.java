@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 
 import com.rainsoft.demo.domain.Customer;
@@ -17,6 +18,7 @@ import com.rainsoft.demo.repository.CustomerRepository;
 import com.rainsoft.demo.repository.OrderRepository;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class MyJpaDemo1Application {
 	private static final Logger logger = LoggerFactory.getLogger(MyJpaDemo1Application.class);
 	public static void main(String[] args) {
