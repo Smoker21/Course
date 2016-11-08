@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: SpringAdmin
+server:
+  port: 11900
+
+
+app:
+  name: SpringAdmin Server
+  description: My Spring Admin Server for management 
+  
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
