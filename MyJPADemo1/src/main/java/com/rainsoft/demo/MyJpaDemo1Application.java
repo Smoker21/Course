@@ -25,6 +25,14 @@ public class MyJpaDemo1Application {
 		SpringApplication.run(MyJpaDemo1Application.class, args);
 	}
 	
+	/**
+	 * Command line runner run once at start time.  
+	 * see http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/CommandLineRunner.html
+	 * 
+	 * @param repository
+	 * @param repository2
+	 * @return
+	 */
 	@Bean
 	public CommandLineRunner demo(CustomerRepository repository, OrderRepository repository2) {
 		return (args) -> {
@@ -38,6 +46,7 @@ public class MyJpaDemo1Application {
 			orders.add(order);
 			cust.setOrders(orders);
 			repository.save(cust);
+			logger.info("Customer : {}", cust);
 		};
 	}
 }
