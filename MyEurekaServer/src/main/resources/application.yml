@@ -1,11 +1,59 @@
+#
+# default local profile
+#
+
+info:
+  app:
+    name: My Eureka Server sample code
+    desc: For demo and study purpose. 
+  author: smoker21
+  purpose: demo & study
+     
 server:
-  port: ${Port:8761}
-  
+  port: ${port:8761}
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${hostname:localhost}
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    registerWithEureka: false
+    fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  
+
+#
+# peer1 profile to enable need use two host. 
+# Note the defaultZone can use comma to add multiple peer
+# Run this in peer1 host.
+# java -jar myeurekaserver.jar --spring.profile.active=peer1 --eurekaPeer=peer2
+---
+spring:
+  profiles: peer1  
+server:
+  port: ${port:8761}  
+eureka:
+  instance:
+    hostname: ${hostname:peer1}
+  client:     
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+      defaultZone: http://${eurekaPeer:peer2}:8761/eureka/
+
+#
+# peer2 profile
+# Run this in peer2 host 
+# java -jar myeurekaserver.jar --spring.profile.active=peer2 --eurekaPeer=peer1 
+#      
+---
+spring:
+  profiles: peer2
+server:
+  port: ${port:8761}  
+eureka:
+  instance:
+    hostname: ${hostname:peer2}
+  client: 
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+      defaultZone: http://${eurekaPeer:peer1}:8761/eureka/
+  
+         
