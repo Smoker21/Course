@@ -1,0 +1,31 @@
+EurekaBalancer:
+  ports:
+  - 8761:8761
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - MyEurekaPeerOne:MyEurekaPeerOne
+  - MyEurekaPeerTwo:MyEurekaPeerTwo
+  stdin_open: true
+MyEurekaPeerOne:
+  environment:
+    eurekaPeer: peer2
+    SPRING_PROFILES_ACTIVE: peer1
+  labels:
+    io.rancher.container.pull_image: always
+  image: smoker21/myeureka:latest
+  hostname: peer1
+  links:
+  - 'influxdb:'
+  - MyEurekaPeerTwo:peer2
+MyEurekaPeerTwo:
+  environment:
+    eurekaPeer: peer1
+    SPRING_PROFILES_ACTIVE: peer2
+  labels:
+    io.rancher.container.pull_image: always
+  image: smoker21/myeureka:latest
+  hostname: peer2
+  links:
+  - MyEurekaPeerOne:peer1
+  - 'influxdb:'
