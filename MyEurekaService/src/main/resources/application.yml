@@ -1,17 +1,50 @@
+info:
+  app:
+    name: My Eureka Service sample code
+    desc: For demo and study purpose. 
+  author: smoker21
+  purpose: demo & study
+  gitbook: https://www.gitbook.com/book/smoker21/rancher-and-springboot/details
+     
+server:
+  port: ${port:8080}
+eureka:
+  instance:
+    hostname: ${hostname:localhost}
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eurekaPort:8761}/eureka/  
+---
+#
+# reminder, please use container name as hostname in rancher setting
+#
 spring:
+  profiles: production1
   application:
     name: MyEurekaService
 server:
-  port: 8081 
-
-
-app:
-  name: MyApp
-  description: My Test application for Eureka service registry
-  
+  port: ${port:8080}
+ 
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${hostname:localhost}
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://${eurekaServer}:${eurekaPort:8761}/eureka
+---
+#
+# reminder, please use container name as hostname in rancher setting
+#
+spring:
+  profiles: production2
+  application:
+    name: MyEurekaService
+server:
+  port: ${port:8080}
+ 
+eureka:
+  instance:
+    hostname: ${hostname:localhost}
+  client:
+    service-url:
+      defaultZone: http://${eurekaServer1}:${eurekaPort1:8761}/eureka,http://${eurekaServer2}:${eurekaPort2:8761}/eureka

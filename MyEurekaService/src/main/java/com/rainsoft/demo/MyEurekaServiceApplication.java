@@ -1,5 +1,8 @@
 package com.rainsoft.demo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -22,6 +25,10 @@ public class MyEurekaServiceApplication {
 	@RequestMapping(path="/sayHello/{name}")
 	@ResponseBody
 	public String hello(@PathVariable("name") String name) {
+		Map<String,String> result = new HashMap<>();
+		result.put("Welcome to Springboot", name);
+		result.put("This is not poor webservlet","This rich spring mvc");
 		return "Hello! " + name;
 	}
+	
 }
