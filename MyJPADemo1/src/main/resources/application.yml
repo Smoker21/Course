@@ -1,6 +1,14 @@
+info:
+  app:
+    name: MyApp
+    description: My Test application for Jpa Repository
+  author: smoker21
+  purpose: demo & study
+  gitbook: https://www.gitbook.com/book/smoker21/rancher-and-springboot/details
+      
 spring:
   application:
-    name: MyJpaRestSample
+    name: MyJpaSample
   data:
     rest:
       base-path: api
@@ -14,17 +22,12 @@ spring:
     show-sql: true
 server:
   port: 9001 
-  
-  
+    
 logging:
   level:
     org: 
       hibernate:
         SQL: debug
-
-app:
-  name: MyApp
-  description: My Test application for Jpa Repository
   
 eureka:
   instance:
@@ -33,3 +36,13 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+---
+spring:
+  profiles: production
+      
+eureka:
+  instance:
+    hostname: ${hostname:localhost}
+  client:
+    service-url:
+      defaultZone: http://${eurekaServer1}:${eurekaPort1:8761}/eureka,http://${eurekaServer2}:${eurekaPort2:8761}/eureka                
