@@ -20,6 +20,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.Point;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.metrics.Metric;
 import org.springframework.util.Assert;
 
@@ -29,7 +31,7 @@ import org.springframework.util.Assert;
  * @author Mateusz Klimaszewski
  */
 public class InfluxDBGaugeWriter implements GaugeWriter {
-
+	private static final Logger logger = LoggerFactory.getLogger(GaugeWriter.class);
 	private static final String DEFAULT_DATABASE_NAME = "metrics";
 	private static final int DEFAULT_BATCH_ACTIONS = 500;
 	private static final int DEFAULT_FLUSH_DURATION = 30;
@@ -53,6 +55,7 @@ public class InfluxDBGaugeWriter implements GaugeWriter {
 				.time(value.getTimestamp().getTime(), TimeUnit.MILLISECONDS)
 				.addField("value", value.getValue())
 				.build();
+		logger.info("this point is {}", point);
 		this.influxDB.write(this.databaseName, "spring" , point);
 	}
 

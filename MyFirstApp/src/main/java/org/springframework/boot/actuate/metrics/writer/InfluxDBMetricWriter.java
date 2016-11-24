@@ -4,16 +4,18 @@ import java.util.concurrent.TimeUnit;
 
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.Point;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.metrics.Metric;
 import org.springframework.util.Assert;
 
 public class InfluxDBMetricWriter implements MetricWriter {
-
+	private static final Logger logger = LoggerFactory.getLogger(GaugeWriter.class);
 	private static final String DEFAULT_DATABASE_NAME = "metrics";
 	private static final int DEFAULT_BATCH_ACTIONS = 500;
 	private static final int DEFAULT_FLUSH_DURATION = 30;
-	private static final String DEFAULT_RETENTION_POLICY_NAME = "spring_metrics";
-	
+	private static final String DEFAULT_RETENTION_POLICY_NAME = "spring";
+
 	private InfluxDB influxDB;
 	private String databaseName;
 
@@ -21,23 +23,26 @@ public class InfluxDBMetricWriter implements MetricWriter {
 		this.influxDB = builder.influxDB;
 		this.databaseName = builder.databaseName;
 		this.influxDB.createDatabase(this.databaseName);
-		this.influxDB.enableBatch(builder.batchActions, builder.flushDuration,
-				builder.flushDurationTimeUnit);
+		this.influxDB.enableBatch(builder.batchActions, builder.flushDuration, builder.flushDurationTimeUnit);
 		this.influxDB.setLogLevel(builder.logLevel);
-	}	
-	
+	}
+
 	@Override
 	public void set(Metric<?> value) {
 		System.out.println("******** blah blah blah ************");
-		Point point = Point.measurement(value.getName())
-				.time(value.getTimestamp().getTime(), TimeUnit.MILLISECONDS)
-				.addField("value", value.getValue())
-				.build();
-		this.influxDB.write(this.databaseName, DEFAULT_RETENTION_POLICY_NAME , point);		
+		Point point = Point.measurement(value.getName()).time(value.getTimestamp().getTime(), TimeUnit.MILLISECONDS)
+				.addField("value", value.getValue()).build();
+		logger.info("this point is {}", point);		
+		this.influxDB.write(this.databaseName, DEFAULT_RETENTION_POLICY_NAME, point);
 	}
 
 	@Override
 	public void increment(Delta<?> delta) {
+		System.out.println("******** blah blah blah ************");
+		Point point = Point.measurement(delta.getName()).time(delta.getTimestamp().getTime(), TimeUnit.MILLISECONDS)
+				.addField("value", delta.getValue()).build();
+		logger.info("this point is {}", point);		
+		this.influxDB.write(this.databaseName, DEFAULT_RETENTION_POLICY_NAME, point);
 	}
 
 	@Override
@@ -45,7 +50,8 @@ public class InfluxDBMetricWriter implements MetricWriter {
 	}
 
 	/**
-	 * {@link InfluxDBGaugeWriter} builder with possibility to change default arguments
+	 * {@link InfluxDBGaugeWriter} builder with possibility to change default
+	 * arguments
 	 */
 	public static class Builder {
 		private final InfluxDB influxDB;
@@ -84,6 +90,6 @@ public class InfluxDBMetricWriter implements MetricWriter {
 		public InfluxDBMetricWriter build() {
 			return new InfluxDBMetricWriter(this);
 		}
-	}	
-	
+	}
+
 }

@@ -3,6 +3,7 @@ package com.rainsoft.demo;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.ExportMetricReader;
 import org.springframework.boot.actuate.autoconfigure.ExportMetricWriter;
 import org.springframework.boot.actuate.metrics.writer.GaugeWriter;
 import org.springframework.boot.actuate.metrics.writer.InfluxDBMetricWriter;
@@ -28,10 +29,18 @@ public class MyFirstAppApplication {
 	@Bean
 	@ExportMetricWriter
 	GaugeWriter InfluxDBWriter() {
-		InfluxDB influxDB = InfluxDBFactory.connect("http://192.168.99.113:8086", "springboot", "springboot");		
+		InfluxDB influxDB = InfluxDBFactory.connect("http://192.168.99.113:8086", "springboot", "springboot");				
 		InfluxDBMetricWriter writer = new InfluxDBMetricWriter.Builder(influxDB).databaseName("springboot").build();
 		return writer; 
 	}
+	
+	
+	@Bean 
+	@ExportMetricReader
+	SystemMetricReader systemReader() {
+		return new SystemMetricReader();
+	}
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(MyFirstAppApplication.class, args);
